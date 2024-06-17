@@ -103,7 +103,7 @@ class Value():
 
   def relu(self):
     # define a relu activation function
-    output = Value(0 if self.data<0 else self.data, (self), 'relu')
+    output = Value(0 if self.data<0 else self.data, (self, ), 'relu')
 
     def _backward():
       self.grad += (self.data>0) * output.grad # at 0 the grad is also 0, but why??
@@ -132,6 +132,9 @@ class Value():
         # it would be appended twice !!
 
     topo_sort(self)
+
+    # backprop from self means d self/ d self = 1
+    self.grad = 1 # lmao i didn't set this up and was confused why test_engine.py failed
 
     # then do the backprop along the topo sort thing that we have
     for n in reversed(topo):
