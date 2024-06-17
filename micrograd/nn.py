@@ -37,7 +37,7 @@ class Neuron(Module):
 
 # make the Layer class (which is just a list of neurons)
 class Layer(Module):
-  def __init__(self, n_in: int, n_out: in, **kwargs) -> None:
+  def __init__(self, n_in: int, n_out: int, **kwargs) -> None:
   # we use **kwargs here so that it can receive arguments like nonlin
   # and any other that we might add later here 
     self.neurons = [Neuron(n_in, **kwargs) for _ in range(n_out)]
@@ -56,7 +56,7 @@ class Layer(Module):
 class MLP(Module):
   def __init__(self, n_in: int, n_outs: list) -> None:
     size = [n_in] + n_outs
-    self.layers = [Layer(size[i], size[i+1], nonlin=i!len(size)-2) for i in range(len(size)-1)] # karpathy uses range(len(n_outs)) here
+    self.layers = [Layer(size[i], size[i+1], nonlin=i!=len(size)-2) for i in range(len(size)-1)] # karpathy uses range(len(n_outs)) here
     # nonlin=i!len(size)-2 this means that we want the last layer to be
     # linear, ie. not activated with relu/tanh
 
