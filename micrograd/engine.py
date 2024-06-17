@@ -1,3 +1,7 @@
+# imports
+import math # karpathy doesn't have this; he doesn't include tanh and exp here
+# math and random is part of Python standard library so you don't need requirements.txt here
+
 # let's code a Value object
 class Value():
   def __init__(self, data, _children=(), _op='', label=''): # this is to initialize, also called a constructor, the object with some initial attributes
