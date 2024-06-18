@@ -3,3 +3,4 @@
 
 # for python's venv
 venv/
+__pycache__/
